@@ -6,8 +6,8 @@ on:
             - main
 
 jobs:
-    My-Deploy_Job:
+    deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Github Repository 파일 불러오기
-              run: actions/checkout@v4
+              uses: actions/checkout@v4
