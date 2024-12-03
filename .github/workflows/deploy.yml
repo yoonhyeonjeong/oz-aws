@@ -18,13 +18,17 @@ jobs:
             - name: 빌드하기
               run: npm run build
 
-            - name: aws resource에 접근할수 있게 aws 인증 설정
+            - name: AWS 리소스 접근 설정
               uses: aws-actions/configure-aws-credentials@v4
               with:
                   aws-region: ap-northeast-2
                   aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
-            - name: s3 기존 파일들 전체 삭제
+            - name: S3 기존 파일 전체 삭제
               run: |
                   aws s3 rm --recursive s3://hj-facebook-web-page
+
+            - name: 빌드 결과물을 S3에 업로드
+              run: |
+                  aws s3 cp ./build s3://hj-facebook-web-page --recursive
