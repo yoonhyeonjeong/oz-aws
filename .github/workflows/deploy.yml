@@ -28,5 +28,3 @@ jobs:
             - name: s3 기존 파일들 전체 삭제
               run: |
                   aws s3 rm --recursives s3://hj-facebook-web-page
-              env:
-                  S3_BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME }}
