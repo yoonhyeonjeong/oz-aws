@@ -1,4 +1,4 @@
-name: Github actions 실행시켜보기
+name: Deploy To S3 And Invalidate Cloudfront
 
 on:
     push:
@@ -9,21 +9,5 @@ jobs:
     My-Deploy_Job:
         runs-on: ubuntu-latest
         steps:
-            - name: Hello World 출력하기
-              run: echo "Hello World"
-
-            - name: 여러 명령어 문장 작성하기
-              run: |
-                  echo "good"
-                  echo "Morning"
-                  pwd
-
-            - name: github actions 자체 저장되어 있는 변수 사용해보기
-              run: |
-                  echo $GITHUB_REPOSITORY
-                  echo $GITHUB_SHA
-
-            - name: github actions secret 변수 사용해보기2
-              run: |
-                  echo ${{ secrets.MY_NAME }}
-                  echo ${{ secrets.MY_HOBBY }}
+            - name: Github Repository 파일 불러오기
+              run: actions/checkout@v4
